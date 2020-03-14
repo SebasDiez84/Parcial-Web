@@ -35,7 +35,7 @@ function calcularMasaCorporal(){
     let estatura = document.getElementById("estatura").value
     estaturaMetros = estatura/100
     indiceMasaCorporal = peso/(estaturaMetros*estaturaMetros) 
-    convertidoIMC = indiceMasaCorporal*10
+    convertidoIMC = indiceMasaCorporal.toFixed(1)
     console.log(" el indice de masa corporal es de " +convertidoIMC)
     return convertidoIMC
 
@@ -46,6 +46,7 @@ function crearUsuario() {
     let existeUsuario = usuarios.find(x => usuario.id === x.id)
     if (existeUsuario) {
         console.log('El usuario ya existe');
+        alert("El usuario ya existe")
         return;
     }
     
@@ -59,7 +60,7 @@ function eliminarUsuario(index) {
 }
 
 function cargarInformacion(index) {
-    let usuario = usaurios[index]
+    let usuario = usuarios[index]
     usuarioTemporal = index
     document.getElementById("tipoDI").value = usuario.tipoDI
     document.getElementById("id").value = usuario.id
