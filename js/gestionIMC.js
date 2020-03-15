@@ -1,4 +1,5 @@
 console.log("----------- Gestion de Usuarios ----------")
+
 let usuarios = [
     {
         tipoDI: "CC",
