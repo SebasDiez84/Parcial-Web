@@ -24,9 +24,10 @@ function obtenerValores() {
     let estatura = document.getElementById("estatura").value
 
     calcularMasaCorporal()
-
+    
     //Aqui se hace el arreglo del usuario
     let miUsuario2 = { tipoDI, id, nombre, apellidos, correo, peso, estatura, convertidoIMC }
+    //localStorage.setItem('usuarios',JSON.stringify(miUsuario2))
     return miUsuario2
 }
 
@@ -51,6 +52,7 @@ function crearUsuario() {
     }
     
     usuarios.push(usuario)
+    
 
     listarUsuarios(limpiarFormulario)
 }
@@ -132,13 +134,14 @@ function consultar(index){
             }
         }
         return;
-    }
+    } 
     
 }
 
 
 
 function listarUsuarios(callback) {
+    //localStorage.getItem('usuarios')
     let lista = document.getElementById("listaUsuarios")
     let data = ""
     for (let i = 0; i < usuarios.length; i++) {
@@ -153,7 +156,7 @@ function listarUsuarios(callback) {
         data += `<td>${miUsuario2.convertidoIMC} </td>`
         data += `<td><button type="button" onclick="cargarInformacion(${i})" class="btn btn-primary btn-sm">Modificar</button> </td>`
         data += '<td><button type="button" onclick="eliminarUsuario(' + i + ')" class="btn btn-primary btn-sm">Eliminar</button> </td>'
-        data += `<td><button type="button" onclick="consultar(${i})" class="btn btn-primary btn-sm">consultar</button> </td>`
+        data += `<td><button type="button" onclick="consultar(${i})" class="btn btn-primary btn-sm">VerEstado</button> </td>`
         data += "</tr>"
     }
     lista.innerHTML = data
