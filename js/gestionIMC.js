@@ -169,7 +169,8 @@ function listarUsuarios() {
     getListaUsuarios();
     
     let data = ""
-    for (let i = 0; i < usuarios.length; i++) {
+    for (let i = 0; i < usuarios.length; i++
+        ) {
         let miUsuario2 = usuarios[i];
         data += "<tr>"
         data += `<td>${miUsuario2.tipoDI}</td>`
