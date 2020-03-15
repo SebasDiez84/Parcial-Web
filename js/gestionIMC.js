@@ -1,5 +1,7 @@
 console.log("----------- Gestion de Usuarios ----------")
 
+
+//Creación de un usuario (Quemado)
 let usuarios = [
     {
         tipoDI: "CC",
@@ -15,6 +17,10 @@ let usuarios = [
 ]
 let UsuarioTemporal = null
 
+
+
+
+//Metodo en donde se obtiene los valores para crear el usuario
 function obtenerValores() {
     let tipoDI = document.getElementById("tipoDI").value
     let id = document.getElementById("id").value
@@ -26,24 +32,24 @@ function obtenerValores() {
 
     calcularMasaCorporal()
     
-    //Aqui se hace el arreglo del usuario
+    //Almacenamiento de datos Usuario
     let miUsuario2 = { tipoDI, id, nombre, apellidos, correo, peso, estatura, convertidoIMC }
     console.log("Se creo el usuario "+id)
-    //localStorage.setItem('usuarios',JSON.stringify(miUsuario2))
     return miUsuario2
 }
 
+//Metodo para calcular el IMC
 function calcularMasaCorporal(){
     let peso = document.getElementById("peso").value
     let estatura = document.getElementById("estatura").value
     estaturaMetros = estatura/100
     indiceMasaCorporal = peso/(estaturaMetros*estaturaMetros) 
     convertidoIMC = indiceMasaCorporal.toFixed(1)
-    //console.log(" el indice de masa corporal es de " +convertidoIMC)
     return convertidoIMC
 
 }
 
+//Metodo para cear un usuario
 function crearUsuario() {
     let usuario = obtenerValores()
     let existeUsuario = usuarios.find(x => usuario.id === x.id)
@@ -52,13 +58,14 @@ function crearUsuario() {
         alert("El usuario ya existe")
         return;
     }
-    
     usuarios.push(usuario)
-    
-
+    //Almacenamiento en el LocalStorage
+    localStorageListaUsuarios(usuarios);
+    //Se limpia el formulario
     listarUsuarios(limpiarFormulario)
 }
 
+//Metodo para eliminar un usuario
 function eliminarUsuario(index) {
     usuarios.splice(index, 1)
     listarUsuarios()
@@ -66,6 +73,7 @@ function eliminarUsuario(index) {
     console.log("Se elimino el usuario ")
 }
 
+//Metodo para cargar la información de el usuario seleccionado en los forms para ser modificada
 function cargarInformacion(index) {
     let usuario = usuarios[index]
     usuarioTemporal = index
@@ -83,7 +91,7 @@ function cargarInformacion(index) {
     console.log("Se va a modificar el usuario "+ usuario.id)
 }
 
-
+//Metodo para limpiar formulario
 function limpiarFormulario() {
 
     document.getElementById("tipoDI").value = ""
@@ -98,6 +106,7 @@ function limpiarFormulario() {
     document.getElementById("btnModificarUsuario").style.display = "none"
 }
 
+//Metodo para modificar usuario
 function modificarUsuario() {
     let usuarioActualizado = obtenerValores()
     usuarios.splice(usuarioTemporal, 1, usuarioActualizado)
@@ -106,50 +115,59 @@ function modificarUsuario() {
     console.log("Se modifico el usuario correctamente")
 }
 
+//Metodo para saber el indice de masa moscular
 function consultar(index){
     let usuario = usuarios[index]
     usuarioTemporal = index
-
-
     let consultaEstatura = usuario.estatura
     let consultaPeso =usuario.peso
-
     estaturaMetros = consultaEstatura/100
     indiceMasaCorporal = consultaPeso/(estaturaMetros*estaturaMetros) 
     convertidoIMC = indiceMasaCorporal.toFixed(1)
     console.log("este es el IMC "+convertidoIMC+ "del consultado "+ id)
 
+    //Alertas de IMC
     if(convertidoIMC<18.5){
         alert("Bajo peso")
-        //console.log("quedo en bajo peso")
     }else{
-        //console.log("entro al condicional")
         if (30>convertidoIMC && convertidoIMC>=18.5){
             alert("Peso normal")
-            //console.log("quedo en peso normal")
         }else{
             console.log("entro al segundo condicional")
             if(35>convertidoIMC && convertidoIMC>=30){
                 alert("Sobre Peso")
-                //console.log("quedo en sobre peso")
             }else{
-                //console.log("entro al tercer condicional")
                 if(35<=convertidoIMC){
                     alert("obesidad")
-                    //console.log("quedo en obeso")
                 }
             }
         }
-        return;
+    return;
     } 
     
 }
 
 
+function localStorageListaUsuarios(pList){
+    localStorage.setItem('ListaUsuariosLocal', JSON.stringify(pList));
+}
+
+
+function getListaUsuarios(){
+    var storedLista = localStorage.getItem('ListaUsuariosLocal')
+    if(storedLista == null){
+        usuarios = [];
+    }else{
+        usuarios= JSON.parse(storedLista);
+    }
+    return usuarios;
+}
 
 function listarUsuarios() {
     //localStorage.getItem('usuarios')
     let lista = document.getElementById("listaUsuarios")
+    getListaUsuarios();
+    
     let data = ""
     for (let i = 0; i < usuarios.length; i++) {
         let miUsuario2 = usuarios[i];
