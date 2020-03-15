@@ -1,5 +1,5 @@
 console.log("----------- Gestion de Usuarios ----------")
-
+let UsuarioTemporal = null
 
 //Creación de un usuario (Quemado)
 let usuarios = [
@@ -15,7 +15,7 @@ let usuarios = [
 
     }
 ]
-let UsuarioTemporal = null
+
 
 //Metodo en donde se obtiene los valores para crear el usuario
 function obtenerValores() {
@@ -31,7 +31,7 @@ function obtenerValores() {
     
     //Almacenamiento de datos Usuario
     let miUsuario2 = { tipoDI, id, nombre, apellidos, correo, peso, estatura, convertidoIMC }
-    console.log("Se creo el usuario "+id)
+    //console.log("Se creo el usuario "+id)
     return miUsuario2
 }
 
@@ -59,13 +59,17 @@ function crearUsuario() {
     //Almacenamiento en el LocalStorage
     localStorageListaUsuarios(usuarios);
     //Se limpia el formulario
-    listarUsuarios(limpiarFormulario)
+    listarUsuarios()
+    limpiarFormulario()
 }
 
 //Metodo para eliminar un usuario
 function eliminarUsuario(index) {
     usuarios.splice(index, 1)
+    //Almacenamiento en el LocalStorage
+    localStorageListaUsuarios(usuarios);
     listarUsuarios()
+    limpiarFormulario()
     alert("Se elimino el usuario ")
     console.log("Se elimino el usuario ")
 }
@@ -86,6 +90,7 @@ function cargarInformacion(index) {
     document.getElementById("btnModificarUsuario").style.display = "inline"
 
     console.log("Se va a modificar el usuario "+ usuario.id)
+    listarUsuarios();
 }
 
 //Metodo para limpiar formulario
@@ -105,10 +110,12 @@ function limpiarFormulario() {
 
 //Metodo para modificar usuario
 function modificarUsuario() {
+    
     let usuarioActualizado = obtenerValores()
     usuarios.splice(usuarioTemporal, 1, usuarioActualizado)
-   
+    localStorageListaUsuarios(usuarios);
     listarUsuarios(limpiarFormulario)
+    limpiarFormulario()
     console.log("Se modifico el usuario correctamente")
 }
 
