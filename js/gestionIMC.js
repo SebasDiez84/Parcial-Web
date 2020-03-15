@@ -36,7 +36,7 @@ function calcularMasaCorporal(){
     estaturaMetros = estatura/100
     indiceMasaCorporal = peso/(estaturaMetros*estaturaMetros) 
     convertidoIMC = indiceMasaCorporal.toFixed(1)
-    console.log(" el indice de masa corporal es de " +convertidoIMC)
+    //console.log(" el indice de masa corporal es de " +convertidoIMC)
     return convertidoIMC
 
 }
@@ -51,7 +51,8 @@ function crearUsuario() {
     }
     
     usuarios.push(usuario)
-    listarUsuarios()
+
+    listarUsuarios(limpiarFormulario)
 }
 
 function eliminarUsuario(index) {
@@ -96,22 +97,46 @@ function modificarUsuario() {
     listarUsuarios(limpiarFormulario)
 }
 
-function consultar(){
-    let consulta= usuario.indiceMasaCorporal
-    if(consulta<18.5){
+function consultar(index){
+    let usuario = usuarios[index]
+    usuarioTemporal = index
+
+
+    let consultaEstatura = usuario.estatura
+    let consultaPeso =usuario.peso
+
+    estaturaMetros = consultaEstatura/100
+    indiceMasaCorporal = consultaPeso/(estaturaMetros*estaturaMetros) 
+    convertidoIMC = indiceMasaCorporal.toFixed(1)
+    console.log("este es el IMC del consultado "+convertidoIMC)
+
+    if(convertidoIMC<18.5){
         alert("Bajo peso")
+        console.log("quedo en bajo peso")
     }else{
-        if (18.5<=consulta<30){
+        console.log("entro al condicional")
+        if (30>convertidoIMC && convertidoIMC>=18.5){
             alert("Peso normal")
+            console.log("quedo en peso normal")
         }else{
-            if(30<=consulta<35){
+            console.log("entro al segundo condicional")
+            if(35>convertidoIMC && convertidoIMC>=30){
                 alert("Sobre Peso")
+                console.log("quedo en sobre peso")
             }else{
-                alert("obesidad")
+                console.log("entro al tercer condicional")
+                if(35<=convertidoIMC){
+                    alert("obesidad")
+                    console.log("quedo en obeso")
+                }
             }
         }
+        return;
     }
+    
 }
+
+
 
 function listarUsuarios(callback) {
     let lista = document.getElementById("listaUsuarios")
@@ -128,7 +153,7 @@ function listarUsuarios(callback) {
         data += `<td>${miUsuario2.convertidoIMC} </td>`
         data += `<td><button type="button" onclick="cargarInformacion(${i})" class="btn btn-primary btn-sm">Modificar</button> </td>`
         data += '<td><button type="button" onclick="eliminarUsuario(' + i + ')" class="btn btn-primary btn-sm">Eliminar</button> </td>'
-        data += '<td><button type="button" onclick="consultar(' + i + ')" class="btn btn-primary btn-sm">Consultar</button> </td>'
+        data += `<td><button type="button" onclick="consultar(${i})" class="btn btn-primary btn-sm">consultar</button> </td>`
         data += "</tr>"
     }
     lista.innerHTML = data
