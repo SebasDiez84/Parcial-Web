@@ -27,3 +27,7 @@ con un mensaje.
 - La identificación es única.
 - Persistencia en localstorage.
 - Control de versiones con github.
+
+
+
+Desarrollado por: Sebastián Díez Vallejo, estudiante de Ingenieria de sistemas de la universidad de Medellin 

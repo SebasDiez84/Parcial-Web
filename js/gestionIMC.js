@@ -17,9 +17,6 @@ let usuarios = [
 ]
 let UsuarioTemporal = null
 
-
-
-
 //Metodo en donde se obtiene los valores para crear el usuario
 function obtenerValores() {
     let tipoDI = document.getElementById("tipoDI").value
@@ -147,11 +144,9 @@ function consultar(index){
     
 }
 
-
 function localStorageListaUsuarios(pList){
     localStorage.setItem('ListaUsuariosLocal', JSON.stringify(pList));
 }
-
 
 function getListaUsuarios(){
     var storedLista = localStorage.getItem('ListaUsuariosLocal')

@@ -13,14 +13,15 @@
 <body>
     <br>
     <h1>Gestión de Masa Corporal</h1>
+    <!--Se almacena la información en este contenedor-->
     <div class="contenedor">
         <center>
+            <!--Los formularios se almacenan en la tarjeta-->
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">En el siguiente formulario puedes crear tu perfil para saber tu IMC.</h6>
                     <form action="javascript:void(0)" onsubmit="crearUsuario()">
                         <br>
-                    
                         <div class="form-group">
                             <label for="tipoDI">Tipo de documento</label>
                             <select class="form-control" id="tipoDI">
@@ -55,11 +56,8 @@
                             <label for="estatura">Estatura (Centimetros)</label>
                             <input class="form-control" type="number" placeholder="Ingrese su estatura en centimetros" id="estatura" required>
                         </div>
-                        
-
+            
                         <input id="btnCrearUsuario" class="btn btn-primary" type="submit" value="Crear usuario">
-                        
-                         
                         <button type="button" onclick="modificarUsuario()" id="btnModificarUsuario" class="btn btn-primary">Modificar usuario </button>
                     </form>
                 </div>
