@@ -11,78 +11,85 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    
-
+    <br>
+    <h1>Gestión de Masa Corporal</h1>
     <div class="contenedor">
-        <h1>Gestión de Masa Corporal</h1>
-        <div class="card">
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">En el siguiente formulario puedes crear tu perfil para saber tu IMC.</h6>
-                <form action="javascript:void(0)" onsubmit="crearUsuario()">
-                   
-                    <div class="form-group">
-                        <label for="tipoDI">Tipo de documento</label>
-                        <select class="form-control" id="tipoDI">
-                          <option>CC</option>
-                          <option>CE</option>
-                          <option>RN</option>
-                          <option>TI</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="id">Identificación</label>
-                        <input class="form-control" type="number" placeholder="Ingrese su identificación" id="id" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input class="form-control" type="text" placeholder="Ingrese su nombre" id="nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="apellidos">Apellidos</label>
-                        <input class="form-control" type="text" placeholder="Ingrese sus apellidos" id="apellidos" required>
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="correo">Correo</label>
-                        <input class="form-control" type="email" name="" id="correo" placeholder="Ingrese su correo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="peso">Peso (kilos)</label>
-                        <input class="form-control" type="number" placeholder="Ingrese su peso" id="peso" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="estatura">Estatura (Centimetros)</label>
-                        <input class="form-control" type="number" placeholder="Ingrese su estatura en centimetros" id="estatura" required>
-                    </div>
+        <center>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">En el siguiente formulario puedes crear tu perfil para saber tu IMC.</h6>
+                    <form action="javascript:void(0)" onsubmit="crearUsuario()">
+                        <br>
                     
+                        <div class="form-group">
+                            <label for="tipoDI">Tipo de documento</label>
+                            <select class="form-control" id="tipoDI">
+                            <option>CC</option>
+                            <option>CE</option>
+                            <option>RN</option>
+                            <option>TI</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="id">Identificación</label>
+                            <input class="form-control" type="number" placeholder="Ingrese su identificación" id="id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Ingrese su nombre" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input class="form-control" type="text" placeholder="Ingrese sus apellidos" id="apellidos" required>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input class="form-control" type="email" name="" id="correo" placeholder="Ingrese su correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (kilos)</label>
+                            <input class="form-control" type="number" placeholder="Ingrese su peso" id="peso" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estatura">Estatura (Centimetros)</label>
+                            <input class="form-control" type="number" placeholder="Ingrese su estatura en centimetros" id="estatura" required>
+                        </div>
+                        
 
-                    <input id="btnCrearUsuario" class="btn btn-primary" type="submit" value="Crear usuario">
-                    <button type="button" onclick="modificarUsuario()" id="btnModificarUsuario" class="btn btn-primary">Modificar usuario </button>
-                </form>
+                        <input id="btnCrearUsuario" class="btn btn-primary" type="submit" value="Crear usuario">
+                        <button type="button" onclick="modificarUsuario()" id="btnModificarUsuario" class="btn btn-primary">Modificar usuario </button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <h1>Lista de Usuarios</h1>
-        <!-- Aqui es donde se van a listar los usuarios -->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Identificación</th>
-                    <th scope="col">Nombre Apellidos</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Estatura</th>
-                    <th scope="col">IMC</th>
+        </center>
+        <div class="contenedor">
+            
+            <h2>Lista de Usuarios</h2>
+            <!-- Aqui es donde se van a listar los usuarios -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Identificación</th>
+                        <th scope="col">Nombre Apellidos</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Estatura</th>
+                        <th scope="col">IMC</th>
 
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">Consultar</th>
-                </tr>
-            </thead>
-            <tbody id="listaUsuarios">
-       
-            </tbody>
-        </table>
+                        <th scope="col">Modificar</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Consultar</th>
+                    </tr>
+                </thead>
+                <tbody id="listaUsuarios">
+        
+                </tbody>
+            </table>
+        </div>
+        
+        
     
         
 
